@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#04060a">
-  <title>Mission ₹5,00,000/Month | Zen Wealth Dashboard</title>
+  <meta name="theme-color" content="#030508">
+  <title>Mission ₹5 Lakhs | Pro Wealth Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #030508;
-      --bg-card: rgba(10, 15, 26, 0.85);
-      --bg-card-hover: rgba(16, 24, 40, 0.95);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(0, 242, 254, 0.45);
+      --bg-card: rgba(10, 15, 26, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
       --accent-cyan: #00f2fe;
       --accent-blue: #4facfe;
       --accent-emerald: #10b981;
@@ -26,12 +23,8 @@
       --accent-purple: #a855f7;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --text-dim: #64748b;
       --radius-sm: 8px;
       --radius-md: 14px;
-      --radius-lg: 20px;
-      --shadow-glow: 0 0 35px rgba(0, 242, 254, 0.2);
-      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
     }
 
     * {
@@ -48,12 +41,11 @@
       font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       padding: 10px;
-      line-height: 1.45;
+      line-height: 1.4;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Padding for Samsung S25 notch / safe areas */
     @supports (padding-top: env(safe-area-inset-top)) {
       body {
         padding-top: max(10px, env(safe-area-inset-top));
@@ -64,12 +56,9 @@
     }
 
     @media (min-width: 768px) {
-      body {
-        padding: 24px;
-      }
+      body { padding: 20px; }
     }
 
-    /* Background Canvas */
     #circleCanvas {
       position: fixed;
       top: 0;
@@ -91,115 +80,73 @@
     }
 
     .container {
-      max-width: 1380px;
+      max-width: 1100px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
-    /* Header - Mobile S25 Optimized */
+    /* Clean Compact Header - No Verbose Clutter */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 14px 16px;
+      padding: 10px 14px;
       background: var(--bg-card);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      margin-bottom: 12px;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), var(--accent-emerald), transparent);
-      animation: headerSweep 6s linear infinite;
-    }
-
-    @keyframes headerSweep {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    .brand-title {
-      flex: 1;
-      min-width: 200px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
     }
 
     .brand-title h1 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      background: linear-gradient(120deg, #ffffff 15%, var(--accent-cyan) 65%, var(--accent-purple) 95%);
+      background: linear-gradient(120deg, #fff 30%, var(--accent-cyan) 90%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.3px;
-      line-height: 1.2;
-    }
-
-    @media (min-width: 768px) {
-      .brand-title h1 {
-        font-size: 1.5rem;
-      }
     }
 
     .brand-title p {
-      color: var(--text-muted);
+      color: var(--accent-gold);
       font-size: 0.72rem;
-      font-weight: 500;
-      margin-top: 1px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .header-controls {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .zen-audio-btn {
-      background: rgba(168, 85, 247, 0.14);
+      background: rgba(168, 85, 247, 0.15);
       border: 1px solid rgba(168, 85, 247, 0.4);
       color: var(--accent-purple);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.74rem;
-      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.2s ease;
       font-family: inherit;
-      min-height: 34px;
-    }
-
-    .zen-audio-btn:active {
-      transform: scale(0.96);
+      min-height: 30px;
     }
 
     .zen-audio-btn.playing {
       background: var(--accent-purple);
       color: #fff;
-      box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
     }
 
     .live-clock {
       font-family: 'JetBrains Mono', monospace;
       background: rgba(0, 0, 0, 0.5);
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      font-size: 0.76rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.7rem;
       color: var(--accent-cyan);
       display: flex;
       align-items: center;
@@ -211,69 +158,60 @@
       height: 6px;
       background: var(--accent-emerald);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-emerald);
+      box-shadow: 0 0 6px var(--accent-emerald);
       animation: pulse 1.8s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     .btn-secondary {
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       color: var(--text-main);
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      font-size: 0.74rem;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
-      min-height: 34px;
     }
 
-    /* Month Tabs Bar - Smooth Swipe on Galaxy S25 */
+    /* DIRECT VISIBLE MONTH TABS (M1 TO M12) */
     .month-nav-panel {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 8px 10px;
-      margin-bottom: 12px;
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-card);
+      padding: 6px 8px;
+      margin-bottom: 8px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
-
-    .month-nav-panel::-webkit-scrollbar {
-      display: none;
-    }
+    .month-nav-panel::-webkit-scrollbar { display: none; }
 
     .month-tabs {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       align-items: center;
       width: max-content;
+      margin: 0 auto;
     }
 
     .month-tab-btn {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 7px 14px;
-      border-radius: 18px;
-      font-size: 0.76rem;
+      padding: 6px 12px;
+      border-radius: 14px;
+      font-size: 0.74rem;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s;
       font-family: 'JetBrains Mono', monospace;
-      min-height: 34px;
-    }
-
-    .month-tab-btn:active {
-      transform: scale(0.95);
+      min-height: 30px;
+      transition: all 0.2s;
     }
 
     .month-tab-btn.active {
@@ -281,149 +219,99 @@
       color: #05070a;
       border-color: transparent;
       font-weight: 800;
-      box-shadow: 0 0 14px rgba(0, 242, 254, 0.5);
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
     }
 
     .month-tab-btn.completed {
-      border-color: rgba(16, 185, 129, 0.5);
+      border-color: rgba(16, 185, 129, 0.6);
       color: var(--accent-emerald);
     }
 
-    /* Motivation Card */
+    /* Clean Motivation Bar */
     .motivation-card {
       background: linear-gradient(135deg, rgba(12, 18, 30, 0.9), rgba(24, 18, 42, 0.75));
       border: 1px solid rgba(168, 85, 247, 0.25);
       border-radius: var(--radius-md);
-      padding: 10px 14px;
-      margin-bottom: 12px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      box-shadow: 0 6px 20px -5px rgba(168, 85, 247, 0.15);
-      backdrop-filter: blur(16px);
-    }
-
-    .motivation-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .quote-icon {
-      font-size: 20px;
-      color: var(--accent-gold);
+      gap: 8px;
     }
 
     .quote-text {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
       color: #f1f5f9;
       font-style: italic;
-      line-height: 1.35;
-    }
-
-    .quote-author {
-      font-size: 0.68rem;
-      color: var(--accent-cyan);
-      font-weight: 600;
-      margin-top: 2px;
+      line-height: 1.3;
+      flex: 1;
     }
 
     .btn-inspire {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 6px 10px;
-      border-radius: 16px;
-      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.68rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      min-height: 32px;
     }
 
-    /* Top Stats Grid - 2x2 Clean on S25 */
+    /* Top Stats (2x2 Grid) */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
-    @media (min-width: 900px) {
-      .stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-      }
+    @media (min-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
     }
 
     .stat-card {
       background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 10px 12px;
+      padding: 8px 10px;
       position: relative;
       overflow: hidden;
     }
 
-    @media (min-width: 768px) {
-      .stat-card {
-        padding: 16px 18px;
-      }
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent-cyan)), transparent);
-    }
-
     .stat-label {
-      font-size: 0.66rem;
+      font-size: 0.64rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
-      margin-bottom: 2px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .stat-value {
-      font-size: 1.22rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #ffffff;
       font-family: 'JetBrains Mono', monospace;
-      letter-spacing: -0.5px;
-      margin-bottom: 1px;
-    }
-
-    @media (min-width: 768px) {
-      .stat-value {
-        font-size: 1.7rem;
-      }
+      margin: 1px 0;
     }
 
     .stat-sub {
-      font-size: 0.66rem;
-      color: var(--text-dim);
+      font-size: 0.64rem;
+      color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .stat-badge {
-      display: inline-block;
-      padding: 1px 5px;
+      padding: 1px 4px;
       border-radius: 4px;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 700;
       background: rgba(16, 185, 129, 0.15);
       color: var(--accent-emerald);
@@ -433,42 +321,36 @@
     /* Progress Banner */
     .progress-banner {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 10px 14px;
-      margin-bottom: 12px;
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-card);
+      padding: 8px 12px;
+      margin-bottom: 8px;
     }
 
     .progress-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .progress-title {
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .progress-pct {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: var(--accent-cyan);
     }
 
     .progress-bar-bg {
-      height: 10px;
+      height: 8px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
     }
 
@@ -476,84 +358,50 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #10b981 100%);
-      border-radius: 8px;
-      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 0 14px rgba(0, 242, 254, 0.55);
-      position: relative;
-      overflow: hidden;
+      border-radius: 6px;
+      transition: width 0.5s ease-out;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
     }
 
-    .progress-bar-fill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      animation: progressShimmer 2.2s infinite;
-    }
-
-    @keyframes progressShimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* Layout */
+    /* Main Section */
     .dashboard-layout {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
-    @media (min-width: 1024px) {
-      .dashboard-layout {
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
-      }
+    @media (min-width: 900px) {
+      .dashboard-layout { grid-template-columns: 2fr 1fr; gap: 12px; }
     }
 
     .panel {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-card);
-    }
-
-    @media (min-width: 768px) {
-      .panel {
-        padding: 20px;
-      }
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px;
     }
 
     .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
     }
 
     .panel-title {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    /* 100% S25 PHONE OPTIMIZED TABLE */
+    /* 100% S25 PHONE FIT TABLE */
     .table-container {
-      max-height: 540px;
+      max-height: 520px;
       overflow-y: auto;
-      overflow-x: hidden; /* No side scroll needed on S25! Fits 100% width! */
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow-x: hidden;
+      border-radius: 6px;
     }
 
     table {
@@ -564,36 +412,31 @@
     }
 
     th {
-      background: rgba(8, 12, 20, 0.96);
+      background: rgba(8, 12, 20, 0.98);
       position: sticky;
       top: 0;
-      padding: 8px 6px;
+      padding: 7px 5px;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
       z-index: 2;
     }
 
     td {
-      padding: 8px 6px;
+      padding: 7px 5px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       color: var(--text-main);
       vertical-align: middle;
     }
 
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.03);
-    }
-
     tr.completed-row td {
-      background: rgba(16, 185, 129, 0.09);
+      background: rgba(16, 185, 129, 0.1);
     }
 
     tr.cut-row td {
-      background: rgba(244, 63, 94, 0.06);
+      background: rgba(244, 63, 94, 0.08);
       opacity: 0.75;
     }
 
@@ -606,9 +449,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
       background: rgba(255, 255, 255, 0.06);
       font-weight: 700;
       font-size: 0.72rem;
@@ -618,12 +461,11 @@
     .completed-row .day-badge {
       background: var(--accent-emerald);
       color: #05070a;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
     }
 
     .cut-row .day-badge {
       background: var(--accent-rose);
-      color: #ffffff;
+      color: #fff;
     }
 
     .currency-mono {
@@ -633,162 +475,121 @@
       white-space: nowrap;
     }
 
-    /* ACTION BUTTON GROUP (TOUCH OPTIMIZED FOR S25 SCREEN) */
     .action-group {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
 
     .btn-action {
-      width: 32px;
-      height: 32px;
-      min-width: 32px;
-      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      border-radius: 7px;
       cursor: pointer;
       display: grid;
       place-items: center;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: rgba(255, 255, 255, 0.06);
       color: var(--text-muted);
     }
 
-    .btn-action:active {
-      transform: scale(0.9);
-    }
+    .btn-action:active { transform: scale(0.9); }
 
     .btn-action.btn-done.active {
       background: var(--accent-emerald);
       border-color: var(--accent-emerald);
       color: #05070a;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
     }
 
     .btn-action.btn-cut.active {
       background: var(--accent-rose);
       border-color: var(--accent-rose);
-      color: #ffffff;
-      box-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
     }
 
     .milestone-tag {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      padding: 2px 6px;
-      border-radius: 12px;
+      padding: 2px 5px;
+      border-radius: 10px;
       font-size: 0.62rem;
       font-weight: 700;
-      background: rgba(245, 158, 11, 0.12);
+      background: rgba(245, 158, 11, 0.15);
       color: var(--accent-gold);
-      border: 1px solid rgba(245, 158, 11, 0.25);
+      border: 1px solid rgba(245, 158, 11, 0.3);
       white-space: nowrap;
     }
 
     .milestone-tag.green {
-      background: rgba(16, 185, 129, 0.12);
+      background: rgba(16, 185, 129, 0.15);
       color: var(--accent-emerald);
-      border-color: rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
     .milestone-tag.cut {
-      background: rgba(244, 63, 94, 0.12);
+      background: rgba(244, 63, 94, 0.15);
       color: var(--accent-rose);
-      border-color: rgba(244, 63, 94, 0.25);
-    }
-
-    /* Companion Cards */
-    .summary-box {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 12px;
-      margin-bottom: 12px;
-    }
-
-    .summary-box h3 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-color: rgba(244, 63, 94, 0.3);
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
+      padding: 5px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 0.78rem;
-    }
-
-    .summary-row:last-child {
-      border-bottom: none;
+      font-size: 0.74rem;
     }
 
     .split-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .split-card {
       background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px;
       text-align: center;
     }
 
     .split-title {
-      font-size: 0.64rem;
+      font-size: 0.62rem;
       color: var(--text-muted);
       text-transform: uppercase;
-      margin-bottom: 2px;
     }
 
     .split-val {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    .rule-box {
-      border-left: 3px solid var(--accent-gold);
-      background: rgba(245, 158, 11, 0.08);
-      padding: 10px 12px;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin-top: 12px;
-      font-size: 0.72rem;
-      color: #fde68a;
-      line-height: 1.4;
     }
   </style>
 </head>
 <body>
 
-  <!-- Full Pro Animated Interactive Circular Canvas -->
   <canvas id="circleCanvas"></canvas>
-  <!-- Confetti Celebration Burst Canvas -->
   <canvas id="confettiCanvas"></canvas>
 
   <div class="container">
-    <!-- Header -->
+    <!-- Clean Punchy Header -->
     <header>
       <div class="brand-title">
-        <h1>MISSION ₹5,00,000 / MONTH</h1>
-        <p>30-DAY DAILY PRO WEALTH LEDGER (₹16,667 / DAY &bull; ₹60L TARGET)</p>
+        <h1>MISSION ₹5 LAKHS</h1>
+        <p id="headerSubtitle">M1 &bull; ₹16,667 / DAY</p>
       </div>
 
       <div class="header-controls">
         <button class="zen-audio-btn" id="zenAudioBtn" onclick="toggleZenSound()">
-          <span>🎧 Zen Sound</span>
+          <span>🎧 Zen</span>
         </button>
 
         <div class="live-clock">
@@ -800,41 +601,33 @@
       </div>
     </header>
 
-    <!-- CLEAN DIRECT MONTH TABS (M1 to M12) -->
+    <!-- DIRECT VISIBLE MONTH TABS (M1 to M12) -->
     <div class="month-nav-panel">
       <div class="month-tabs" id="monthTabsContainer">
-        <!-- Injected via JS: M1, M2, M3 ... M12 -->
+        <!-- Rendered via JS -->
       </div>
     </div>
 
-    <!-- MOTIVATION TICKER -->
+    <!-- Motivation Bar -->
     <div class="motivation-card">
-      <div class="motivation-content">
-        <div class="quote-icon">❝</div>
-        <div>
-          <div class="quote-text" id="quoteTextEl">
-            "Calm mind, sharp execution. Don't chase money; attract it with daily discipline."
-          </div>
-          <div class="quote-author" id="quoteAuthorEl">— Billionaire Mindset & Zen Strategy</div>
-        </div>
+      <div class="quote-text" id="quoteTextEl">
+        "Calm mind, sharp execution. Don't chase money; attract it with daily discipline."
       </div>
-      <button class="btn-inspire" onclick="nextMotivation()">
-        <span>✨ Inspire</span>
-      </button>
+      <button class="btn-inspire" onclick="nextMotivation()">✨ Next</button>
     </div>
 
     <!-- Top Stats (2x2 Grid) -->
     <div class="stats-grid">
-      <div class="stat-card" style="--card-accent: var(--accent-cyan);">
+      <div class="stat-card">
         <div class="stat-label">
           <span>Target</span>
-          <span class="stat-badge" id="statMonthBadge">MONTH 1</span>
+          <span class="stat-badge" id="statMonthBadge">M1</span>
         </div>
         <div class="stat-value">₹5,00,000</div>
         <div class="stat-sub">₹16,667 / day</div>
       </div>
 
-      <div class="stat-card" style="--card-accent: var(--accent-emerald);">
+      <div class="stat-card">
         <div class="stat-label">
           <span>Earned</span>
           <span class="stat-badge" id="completedDaysBadge">0/30</span>
@@ -843,31 +636,29 @@
         <div class="stat-sub" id="remainingVal">₹5,00,000 to go</div>
       </div>
 
-      <div class="stat-card" style="--card-accent: var(--accent-gold);">
+      <div class="stat-card">
         <div class="stat-label">
           <span>12M Total</span>
           <span class="stat-badge">TOTAL</span>
         </div>
         <div class="stat-value" id="allMonthsTotalVal">₹0</div>
-        <div class="stat-sub">Completed months</div>
+        <div class="stat-sub">All completed</div>
       </div>
 
-      <div class="stat-card" style="--card-accent: var(--accent-purple);">
+      <div class="stat-card">
         <div class="stat-label">
-          <span>1 Year Goal</span>
+          <span>Annual Goal</span>
           <span class="stat-badge">1 YEAR</span>
         </div>
         <div class="stat-value">₹60,00,000</div>
-        <div class="stat-sub">0.60 Crore Target</div>
+        <div class="stat-sub">0.60 Crore</div>
       </div>
     </div>
 
     <!-- Progress Banner -->
     <div class="progress-banner">
       <div class="progress-header">
-        <div class="progress-title">
-          <span id="progressTitleText">🚀 Month 1 Gauge (₹5,00,000)</span>
-        </div>
+        <div class="progress-title" id="progressTitleText">🚀 Month 1 Progress (₹5,00,000)</div>
         <div class="progress-pct" id="progressPctText">0.0%</div>
       </div>
       <div class="progress-bar-bg">
@@ -875,14 +666,12 @@
       </div>
     </div>
 
-    <!-- Main Section: Daily Ledger + Month Companion Info -->
+    <!-- Main Section: Daily Ledger + Summary -->
     <div class="dashboard-layout">
-      <!-- Left: Interactive Daily Table (100% Fit on S25 Screen) -->
+      <!-- Left: Interactive Daily Table -->
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">
-            <span id="tableTitleText">📅 Month 1 Ledger</span>
-          </div>
+          <div class="panel-title" id="tableTitleText">📅 Month 1 Daily Ledger</div>
           <button class="btn-secondary" onclick="resetCurrentMonth()">↺ Reset</button>
         </div>
 
@@ -892,25 +681,25 @@
               <tr>
                 <th style="width: 28px;">#</th>
                 <th>Target</th>
-                <th>Bank Bal</th>
+                <th>Balance</th>
                 <th>Milestone</th>
-                <th style="width: 72px; text-align: center;">Action</th>
+                <th style="width: 70px; text-align: center;">Status</th>
               </tr>
             </thead>
             <tbody id="daysTableBody">
-              <!-- Dynamically populated via JS -->
+              <!-- Rendered via JS -->
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Right: Month Summary & Profit Security -->
+      <!-- Right: Companion Info -->
       <div>
-        <div class="summary-box">
-          <h3>
-            <span id="summaryBoxTitle">📊 Month 1 Breakdown</span>
+        <div class="panel" style="margin-bottom: 8px;">
+          <div class="panel-header">
+            <div class="panel-title" id="summaryBoxTitle">📊 Month 1 Breakdown</div>
             <span class="stat-badge" id="summaryStatusBadge">Active</span>
-          </h3>
+          </div>
 
           <div class="summary-row">
             <span style="color: var(--text-muted);">Days Earned (✓):</span>
@@ -921,36 +710,29 @@
             <span class="currency-mono" style="color: var(--accent-rose);" id="sumCutCount">0 Days</span>
           </div>
           <div class="summary-row">
-            <span style="color: var(--text-muted);">Days Remaining:</span>
+            <span style="color: var(--text-muted);">Remaining:</span>
             <span class="currency-mono" id="sumRemainingCount">30 Days</span>
           </div>
           <div class="summary-row">
             <span style="color: var(--text-muted);">Month Total:</span>
-            <span class="currency-mono" style="color: var(--accent-cyan); font-weight: 700;" id="sumMonthTotal">₹0</span>
+            <span class="currency-mono" style="color: var(--accent-cyan);" id="sumMonthTotal">₹0</span>
           </div>
         </div>
 
-        <!-- Profit Security & 70/30 Split Card -->
         <div class="panel">
-          <div class="panel-header" style="margin-bottom: 8px;">
-            <div class="panel-title">
-              <span>🛡️ Profit Security (70/30)</span>
-            </div>
+          <div class="panel-header">
+            <div class="panel-title">🛡️ Profit Split (70/30)</div>
           </div>
 
           <div class="split-grid">
             <div class="split-card">
-              <div class="split-title">70% Safe Bank</div>
+              <div class="split-title">70% Bank</div>
               <div class="split-val" style="color: var(--accent-emerald);" id="splitBankVal">₹0</div>
             </div>
             <div class="split-card">
               <div class="split-title">30% Reserve</div>
               <div class="split-val" style="color: var(--accent-gold);" id="splitReserveVal">₹0</div>
             </div>
-          </div>
-
-          <div class="rule-box">
-            <strong>🛑 S25 Rule:</strong> Jab din ka ₹16,667 touch ho jaye, phone lock karke relax karo. Month complete hote hi next month auto load ho jata hai!
           </div>
         </div>
       </div>
@@ -959,64 +741,28 @@
   </div>
 
   <script>
-    // --- Application State: Multi-Month (Month 1 to 12) ---
     const TOTAL_DAYS = 30;
     const DAILY_TARGET = 16667;
     const MONTHLY_TARGET = 500000;
     let currentMonth = 1;
 
     let allMonthsData = {};
-    const STORAGE_KEY = 'mission_5lakh_s25_v1';
+    const STORAGE_KEY = 'mission_5lakh_fixed_master';
 
-    // Motivational Quotes
     const MOTIVATIONAL_QUOTES = [
-      {
-        quote: "Calm mind, sharp execution. Don't chase money; attract it with uncompromising daily discipline.",
-        author: "Zen Wealth Principle"
-      },
-      {
-        quote: "Roz ka ₹16,667 chhota lagta hai, lekin 12 mahine me yahi ₹60,00,000 (0.60 Crore) banta hai. Stay consistent!",
-        author: "Power of Daily Compounding"
-      },
-      {
-        quote: "Discipline is choosing between what you want right now and what you want most in life.",
-        author: "Billionaire Mindset"
-      },
-      {
-        quote: "Market me emotion se kaam karne wale dube hain, patience aur strict target follow karne wale raaj karte hain.",
-        author: "Professional Capital Rule"
-      },
-      {
-        quote: "Jab din ka target hit ho jaye, screen band karo, walk par jao aur mind ko relax karo. Greed kills profit.",
-        author: "Golden Wealth Rule"
-      },
-      {
-        quote: "One day or Day One. You decided today. Har din ka ek tick aapko ₹60 Lakhs ke kareeb le ja raha hai.",
-        author: "Elite Focus"
-      },
-      {
-        quote: "Success is not an event, it's a daily habit. Win the day, win the month, dominate the year.",
-        author: "High-Performance Strategy"
-      }
+      "Calm mind, sharp execution. Don't chase money; attract it with daily discipline.",
+      "Roz ka ₹16,667 chhota lagta hai, lekin 12 mahine me yahi ₹60,00,000 banta hai!",
+      "Discipline is choosing between what you want now and what you want most in life.",
+      "Market me emotion se trade karne wale dube hain, patience wale jeet-te hain.",
+      "Jab din ka target hit ho jaye, screen band karo aur relax karo. Greed kills profit.",
+      "One day or Day One. You decided today. Har tick aapko ₹60 Lakhs ke kareeb le ja raha hai."
     ];
 
     let currentQuoteIndex = 0;
 
     function nextMotivation() {
       currentQuoteIndex = (currentQuoteIndex + 1) % MOTIVATIONAL_QUOTES.length;
-      const textEl = document.getElementById('quoteTextEl');
-      const authorEl = document.getElementById('quoteAuthorEl');
-
-      textEl.style.opacity = '0';
-      authorEl.style.opacity = '0';
-
-      setTimeout(() => {
-        textEl.innerText = `"${MOTIVATIONAL_QUOTES[currentQuoteIndex].quote}"`;
-        authorEl.innerText = `— ${MOTIVATIONAL_QUOTES[currentQuoteIndex].author}`;
-        textEl.style.opacity = '1';
-        authorEl.style.opacity = '1';
-      }, 250);
-
+      document.getElementById('quoteTextEl').innerText = `"${MOTIVATIONAL_QUOTES[currentQuoteIndex]}"`;
       playBeep('milestone');
     }
     setInterval(nextMotivation, 12000);
@@ -1039,7 +785,6 @@
 
           zenOsc1.type = 'sine';
           zenOsc1.frequency.setValueAtTime(108, zenAudioCtx.currentTime);
-          
           zenOsc2.type = 'triangle';
           zenOsc2.frequency.setValueAtTime(216, zenAudioCtx.currentTime);
 
@@ -1048,7 +793,7 @@
           filter.frequency.setValueAtTime(320, zenAudioCtx.currentTime);
 
           zenGain.gain.setValueAtTime(0.01, zenAudioCtx.currentTime);
-          zenGain.gain.exponentialRampToValueAtTime(0.08, zenAudioCtx.currentTime + 3);
+          zenGain.gain.exponentialRampToValueAtTime(0.08, zenAudioCtx.currentTime + 2);
 
           zenOsc1.connect(filter);
           zenOsc2.connect(filter);
@@ -1060,10 +805,8 @@
 
           isZenPlaying = true;
           btn.classList.add('playing');
-          btn.innerHTML = '<span>🔊 Zen On</span>';
-        } catch (e) {
-          console.log('Audio init blocked:', e);
-        }
+          btn.innerHTML = '<span>🔊 On</span>';
+        } catch (e) {}
       } else {
         if (zenGain && zenAudioCtx) {
           zenGain.gain.exponentialRampToValueAtTime(0.0001, zenAudioCtx.currentTime + 1);
@@ -1077,11 +820,10 @@
           isZenPlaying = false;
         }
         btn.classList.remove('playing');
-        btn.innerHTML = '<span>🎧 Zen Sound</span>';
+        btn.innerHTML = '<span>🎧 Zen</span>';
       }
     }
 
-    // Audio SFX
     function playBeep(type = 'click') {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1114,12 +856,9 @@
       } catch (e) {}
     }
 
-    // ========================================================
-    // 🌀 S25 AMOLED RETINA OPTIMIZED CIRCULAR CANVAS
-    // ========================================================
+    // Canvas Background
     const canvas = document.getElementById('circleCanvas');
     const ctx = canvas.getContext('2d');
-
     const confCanvas = document.getElementById('confettiCanvas');
     const confCtx = confCanvas.getContext('2d');
 
@@ -1136,13 +875,10 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Touch / Tap Interactive Ripples on S25 Screen
     let interactiveRipples = [];
 
     window.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 0) {
-        createInteractiveRipple(e.touches[0].clientX, e.touches[0].clientY);
-      }
+      if (e.touches.length > 0) createInteractiveRipple(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
 
     window.addEventListener('click', (e) => {
@@ -1154,105 +890,63 @@
         x: x,
         y: y,
         radius: 10,
-        maxRadius: Math.random() * 80 + 60,
+        maxRadius: Math.random() * 70 + 40,
         alpha: 0.35,
         color: Math.random() > 0.5 ? '0, 242, 254' : '168, 85, 247'
       });
     }
 
-    // Concentric Pulsing Wheels
     const concentricCenters = [
-      { xRatio: 0.2, yRatio: 0.2, baseRadius: 140, speed: 0.007, color: '0, 242, 254' },
-      { xRatio: 0.8, yRatio: 0.75, baseRadius: 180, speed: 0.005, color: '168, 85, 247' },
-      { xRatio: 0.5, yRatio: 0.5, baseRadius: 220, speed: 0.004, color: '16, 185, 129' }
+      { xRatio: 0.2, yRatio: 0.2, baseRadius: 130, speed: 0.007, color: '0, 242, 254' },
+      { xRatio: 0.8, yRatio: 0.75, baseRadius: 160, speed: 0.005, color: '168, 85, 247' }
     ];
 
     class GlowingOrb {
       constructor() {
-        this.reset();
-      }
-      reset() {
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight;
-        this.radius = Math.random() * 65 + 30;
-        this.vx = (Math.random() - 0.5) * 0.35;
-        this.vy = (Math.random() - 0.5) * 0.35;
-        this.pulseSpeed = Math.random() * 0.02 + 0.008;
+        this.radius = Math.random() * 50 + 20;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
         this.pulseAngle = Math.random() * Math.PI * 2;
-        this.orbitAngle = Math.random() * Math.PI * 2;
-        this.orbitSpeed = (Math.random() - 0.5) * 0.035;
-        const colorPalette = [
-          '0, 242, 254',   // Cyan
-          '168, 85, 247',  // Purple
-          '16, 185, 129',  // Emerald
-          '251, 191, 36'   // Gold
-        ];
-        this.color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-        this.baseAlpha = Math.random() * 0.08 + 0.03;
+        const colors = ['0, 242, 254', '168, 85, 247', '16, 185, 129'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
       }
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.pulseAngle += this.pulseSpeed;
-        this.orbitAngle += this.orbitSpeed;
-
-        if (this.x < -80) this.x = window.innerWidth + 80;
-        if (this.x > window.innerWidth + 80) this.x = -80;
-        if (this.y < -80) this.y = window.innerHeight + 80;
-        if (this.y > window.innerHeight + 80) this.y = -80;
+        this.pulseAngle += 0.015;
+        if (this.x < -60) this.x = window.innerWidth + 60;
+        if (this.x > window.innerWidth + 60) this.x = -60;
+        if (this.y < -60) this.y = window.innerHeight + 60;
+        if (this.y > window.innerHeight + 60) this.y = -60;
       }
       draw() {
-        const dynamicRadius = this.radius + Math.sin(this.pulseAngle) * 12;
-        const currentAlpha = this.baseAlpha + Math.sin(this.pulseAngle) * 0.02;
-
-        const grad = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, dynamicRadius
-        );
-        grad.addColorStop(0, `rgba(${this.color}, ${currentAlpha * 2.2})`);
-        grad.addColorStop(0.5, `rgba(${this.color}, ${currentAlpha * 0.8})`);
+        const r = this.radius + Math.sin(this.pulseAngle) * 8;
+        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r);
+        grad.addColorStop(0, `rgba(${this.color}, 0.12)`);
         grad.addColorStop(1, `rgba(${this.color}, 0)`);
-
         ctx.beginPath();
-        ctx.arc(this.x, this.y, dynamicRadius, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
         ctx.fillStyle = grad;
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, dynamicRadius * 0.65, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${this.color}, ${currentAlpha * 1.6})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        const satDist = dynamicRadius * 0.9;
-        const satX = this.x + Math.cos(this.orbitAngle) * satDist;
-        const satY = this.y + Math.sin(this.orbitAngle) * satDist;
-        ctx.beginPath();
-        ctx.arc(satX, satY, 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color}, 0.6)`;
         ctx.fill();
       }
     }
 
     const orbs = [];
-    for (let i = 0; i < 14; i++) {
-      orbs.push(new GlowingOrb());
-    }
+    for (let i = 0; i < 10; i++) orbs.push(new GlowingOrb());
 
     let confettiParticles = [];
-
     function triggerCelebration(originX, originY) {
-      const colors = ['#00f2fe', '#4facfe', '#10b981', '#fbbf24', '#a855f7', '#f43f5e'];
-      for (let i = 0; i < 35; i++) {
+      const colors = ['#00f2fe', '#4facfe', '#10b981', '#fbbf24', '#a855f7'];
+      for (let i = 0; i < 30; i++) {
         confettiParticles.push({
           x: originX || window.innerWidth / 2,
           y: originY || window.innerHeight / 2,
-          vx: (Math.random() - 0.5) * 12,
-          vy: (Math.random() - 0.8) * 14,
-          size: Math.random() * 5 + 3,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.8) * 12,
+          size: Math.random() * 4 + 3,
           color: colors[Math.floor(Math.random() * colors.length)],
-          rotation: Math.random() * 360,
-          rotSpeed: (Math.random() - 0.5) * 10,
           gravity: 0.35,
           alpha: 1
         });
@@ -1266,74 +960,54 @@
         p.x += p.vx;
         p.y += p.vy;
         p.vy += p.gravity;
-        p.rotation += p.rotSpeed;
-        p.alpha -= 0.018;
-
+        p.alpha -= 0.02;
         if (p.alpha <= 0) {
           confettiParticles.splice(i, 1);
           continue;
         }
-
-        confCtx.save();
-        confCtx.translate(p.x, p.y);
-        confCtx.rotate((p.rotation * Math.PI) / 180);
         confCtx.fillStyle = p.color;
         confCtx.globalAlpha = p.alpha;
         confCtx.beginPath();
-        confCtx.arc(0, 0, p.size, 0, Math.PI * 2);
+        confCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         confCtx.fill();
-        confCtx.restore();
       }
     }
 
     let globalTick = 0;
-
     function animateCircularCanvas() {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       globalTick++;
 
-      // Rings
       concentricCenters.forEach((center) => {
         const cx = window.innerWidth * center.xRatio;
         const cy = window.innerHeight * center.yRatio;
-
-        for (let ring = 1; ring <= 3; ring++) {
-          const waveOffset = Math.sin(globalTick * center.speed + ring * 1.3) * 18;
-          const currentRadius = center.baseRadius * (ring * 0.45) + waveOffset;
-          const ringAlpha = (0.07 - ring * 0.015) + Math.sin(globalTick * center.speed) * 0.015;
-
+        for (let ring = 1; ring <= 2; ring++) {
+          const wave = Math.sin(globalTick * center.speed + ring * 1.3) * 14;
+          const r = center.baseRadius * (ring * 0.5) + wave;
           ctx.beginPath();
-          ctx.arc(cx, cy, Math.max(10, currentRadius), 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${center.color}, ${Math.max(0.01, ringAlpha)})`;
+          ctx.arc(cx, cy, Math.max(10, r), 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${center.color}, 0.05)`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
       });
 
-      // Ripples
       for (let i = interactiveRipples.length - 1; i >= 0; i--) {
         const r = interactiveRipples[i];
         r.radius += 2.2;
         r.alpha -= 0.01;
-
         if (r.alpha <= 0 || r.radius >= r.maxRadius) {
           interactiveRipples.splice(i, 1);
           continue;
         }
-
         ctx.beginPath();
         ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(${r.color}, ${r.alpha})`;
-        ctx.lineWidth = 1.4;
+        ctx.lineWidth = 1.2;
         ctx.stroke();
       }
 
-      // Orbs
-      orbs.forEach(orb => {
-        orb.update();
-        orb.draw();
-      });
-
+      orbs.forEach(orb => { orb.update(); orb.draw(); });
       animateConfetti();
       requestAnimationFrame(animateCircularCanvas);
     }
@@ -1351,24 +1025,16 @@
           allMonthsData = {};
         }
       }
-      if (!allMonthsData[currentMonth]) {
-        allMonthsData[currentMonth] = {};
-      }
+      if (!allMonthsData[currentMonth]) allMonthsData[currentMonth] = {};
     }
 
     function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        currentMonth,
-        allMonthsData
-      }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ currentMonth, allMonthsData }));
     }
 
-    // Live Clock
     function updateClock() {
       const now = new Date();
-      const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
-      const clockEl = document.getElementById('liveClockDisplay');
-      if (clockEl) clockEl.innerText = timeStr;
+      document.getElementById('liveClockDisplay').innerText = now.toLocaleTimeString('en-US', { hour12: false });
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -1379,14 +1045,13 @@
 
     function selectMonth(m) {
       currentMonth = m;
-      if (!allMonthsData[currentMonth]) {
-        allMonthsData[currentMonth] = {};
-      }
+      if (!allMonthsData[currentMonth]) allMonthsData[currentMonth] = {};
       saveState();
       playBeep('click');
       renderDashboard();
     }
 
+    // RENDER MONTH TABS (M1 to M12)
     function renderMonthTabs() {
       const container = document.getElementById('monthTabsContainer');
       container.innerHTML = '';
@@ -1397,21 +1062,17 @@
         
         const mData = allMonthsData[m] || {};
         let mTotal = 0;
-        let doneDays = 0;
         for (let d = 1; d <= TOTAL_DAYS; d++) {
           if (mData[d]?.status === 'done') {
-            doneDays++;
             mTotal += (mData[d].amount || DAILY_TARGET);
           }
         }
 
         if (mTotal >= MONTHLY_TARGET) {
           btn.classList.add('completed');
-          btn.innerHTML = `✓ M${m}`;
-        } else if (doneDays > 0) {
-          btn.innerHTML = `M${m} (${doneDays}d)`;
+          btn.innerText = `✓ M${m}`;
         } else {
-          btn.innerHTML = `M${m}`;
+          btn.innerText = `M${m}`;
         }
 
         btn.onclick = () => selectMonth(m);
@@ -1420,9 +1081,7 @@
     }
 
     function setDayStatus(day, action, event) {
-      if (!allMonthsData[currentMonth]) {
-        allMonthsData[currentMonth] = {};
-      }
+      if (!allMonthsData[currentMonth]) allMonthsData[currentMonth] = {};
       const dayData = allMonthsData[currentMonth];
       const currentStatus = dayData[day]?.status || 'pending';
 
@@ -1433,12 +1092,8 @@
         } else {
           dayData[day] = { status: 'done', amount: DAILY_TARGET };
           playBeep('milestone');
-          
-          if (event) {
-            triggerCelebration(event.clientX, event.clientY);
-          } else {
-            triggerCelebration();
-          }
+          if (event) triggerCelebration(event.clientX, event.clientY);
+          else triggerCelebration();
         }
       } else if (action === 'cut') {
         if (currentStatus === 'cut') {
@@ -1473,7 +1128,7 @@
         if (currentMonth < 12) {
           setTimeout(() => {
             triggerCelebration(window.innerWidth / 2, window.innerHeight / 2);
-            if (confirm(`🎉 Badhai ho! Month ${currentMonth} ka target poora ho chuka hai!\n\nKya aap Month ${currentMonth + 1} par aage badhna chahte hain?`)) {
+            if (confirm(`🎉 Badhai ho! Month ${currentMonth} complete!\n\nMonth ${currentMonth + 1} par chalein?`)) {
               selectMonth(currentMonth + 1);
             }
           }, 400);
@@ -1482,7 +1137,7 @@
     }
 
     function resetCurrentMonth() {
-      if (confirm(`Kya aap Month ${currentMonth} ke saare din reset karna chahte hain?`)) {
+      if (confirm(`Month ${currentMonth} reset karein?`)) {
         allMonthsData[currentMonth] = {};
         saveState();
         playBeep('click');
@@ -1490,7 +1145,6 @@
       }
     }
 
-    // S25 COMPACT FIT TABLE
     function renderTable() {
       const tbody = document.getElementById('daysTableBody');
       tbody.innerHTML = '';
@@ -1510,7 +1164,7 @@
         if (st === 'done') tr.classList.add('completed-row');
         if (st === 'cut') tr.classList.add('cut-row');
 
-        let milestoneHtml = '<span style="color: var(--text-dim);">-</span>';
+        let milestoneHtml = '<span style="color: var(--text-muted);">-</span>';
         if (st === 'cut') {
           milestoneHtml = '<span class="milestone-tag cut">✕ Cut</span>';
         } else {
@@ -1519,7 +1173,7 @@
           else if (day === 15) milestoneHtml = '<span class="milestone-tag">₹2.5L</span>';
           else if (day === 18) milestoneHtml = '<span class="milestone-tag green">₹3L</span>';
           else if (day === 24) milestoneHtml = '<span class="milestone-tag green">₹4L</span>';
-          else if (day === 30) milestoneHtml = '<span class="milestone-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);">🏆 ₹5L</span>';
+          else if (day === 30) milestoneHtml = '<span class="milestone-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">🏆 ₹5L</span>';
         }
 
         tr.innerHTML = `
@@ -1531,12 +1185,8 @@
           <td>${milestoneHtml}</td>
           <td style="text-align: center;">
             <div class="action-group">
-              <button class="btn-action btn-done ${st === 'done' ? 'active' : ''}" onclick="setDayStatus(${day}, 'done', event)" title="Done">
-                ✓
-              </button>
-              <button class="btn-action btn-cut ${st === 'cut' ? 'active' : ''}" onclick="setDayStatus(${day}, 'cut', event)" title="Cut">
-                ✕
-              </button>
+              <button class="btn-action btn-done ${st === 'done' ? 'active' : ''}" onclick="setDayStatus(${day}, 'done', event)" title="Done">✓</button>
+              <button class="btn-action btn-cut ${st === 'cut' ? 'active' : ''}" onclick="setDayStatus(${day}, 'cut', event)" title="Cut">✕</button>
             </div>
           </td>
         `;
@@ -1573,25 +1223,22 @@
       const remaining = Math.max(0, MONTHLY_TARGET - monthEarned);
       const pct = Math.min(100, (monthEarned / MONTHLY_TARGET) * 100).toFixed(1);
 
+      document.getElementById('headerSubtitle').innerText = `M${currentMonth} • ₹16,667 / DAY`;
       document.getElementById('statMonthBadge').innerText = `M${currentMonth}`;
       document.getElementById('monthEarnedVal').innerText = formatINR(monthEarned);
       document.getElementById('completedDaysBadge').innerText = `${completedCount}✓ | ${cutCount}✕`;
       document.getElementById('allMonthsTotalVal').innerText = formatINR(globalAllMonthsTotal);
 
       const remEl = document.getElementById('remainingVal');
-      if (remaining === 0) {
-        remEl.innerHTML = `<span style="color: var(--accent-emerald); font-weight: 700;">🎉 GOAL HIT!</span>`;
-      } else {
-        remEl.innerText = `${formatINR(remaining)} to go`;
-      }
+      if (remaining === 0) remEl.innerHTML = `<span style="color: var(--accent-emerald);">🎉 GOAL HIT!</span>`;
+      else remEl.innerText = `${formatINR(remaining)} to go`;
 
-      document.getElementById('progressTitleText').innerText = `🚀 Month ${currentMonth} Gauge (₹5L)`;
+      document.getElementById('progressTitleText').innerText = `🚀 Month ${currentMonth} Progress (₹5L)`;
       document.getElementById('progressPctText').innerText = `${pct}%`;
       document.getElementById('progressBarFill').style.width = `${pct}%`;
 
-      document.getElementById('tableTitleText').innerText = `📅 Month ${currentMonth} Ledger`;
-
-      document.getElementById('summaryBoxTitle').innerText = `📊 Month ${currentMonth}`;
+      document.getElementById('tableTitleText').innerText = `📅 Month ${currentMonth} Daily Ledger`;
+      document.getElementById('summaryBoxTitle').innerText = `📊 Month ${currentMonth} Breakdown`;
       document.getElementById('sumDoneCount').innerText = `${completedCount} Days (${formatINR(monthEarned)})`;
       document.getElementById('sumCutCount').innerText = `${cutCount} Days`;
       document.getElementById('sumRemainingCount').innerText = `${TOTAL_DAYS - (completedCount + cutCount)} Days`;
@@ -1601,17 +1248,13 @@
       if (monthEarned >= MONTHLY_TARGET) {
         badge.innerText = 'Completed ✓';
         badge.style.color = 'var(--accent-emerald)';
-        badge.style.borderColor = 'rgba(16, 185, 129, 0.4)';
       } else {
         badge.innerText = 'Active';
         badge.style.color = 'var(--accent-cyan)';
-        badge.style.borderColor = 'rgba(0, 242, 254, 0.4)';
       }
 
-      const bank70 = monthEarned * 0.70;
-      const reserve30 = monthEarned * 0.30;
-      document.getElementById('splitBankVal').innerText = formatINR(bank70);
-      document.getElementById('splitReserveVal').innerText = formatINR(reserve30);
+      document.getElementById('splitBankVal').innerText = formatINR(monthEarned * 0.70);
+      document.getElementById('splitReserveVal').innerText = formatINR(monthEarned * 0.30);
     }
 
     function renderDashboard() {
